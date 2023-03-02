@@ -3,16 +3,16 @@
   "version": "2.0.0",
   "description": "SRND icons for React projects.",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "author": "Tyler Menezes",
   "license": "UNLICENSED",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
-  "sideEffects": false,
   "scripts": {
-    "clean": "rm -rf src/Icon && rm -rf dist",
-    "build": "tsc",
+    "clean": "rm -rf src/Icon && rm -rf src/optimized-svg && rm -rf dist",
+    "build": "tsup src/Icon --dts",
+    "build:fast": "tsup src/Icon --no-clean",
     "pregenerate-icons": "svgo -f ./src/svg/Icon -o src/optimized-svg/Icon",
     "generate-icons": "mkdir -p src/Icon && create-chakra-icons -o src/Icon src/optimized-svg/Icon --typescript --multi -T C && idxgen src/Icon/",
     "postgenerate-icons": "replace '#000000' 'currentColor' src/Icon/*.tsx && replace '#000' 'currentColor' src/Icon/*.tsx"
@@ -24,13 +24,13 @@
     "@nexite/create-chakra-icons": "^1.1.1",
     "@types/node": "^16.11.6",
     "@types/react": "^18.0.0",
-    "auto-export-components": "^1.0.5",
     "framer-motion": "^10.0.1",
     "idxgen": "^1.3.1",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "replace": "^1.2.2",
     "svgo": "^3.0.2",
-    "ts-create-index": "^3.0.10",
+    "tsup": "^6.6.3",
     "typescript": "^4.5.2"
   },
   "peerDependencies": {
@@ -40,5 +40,13 @@
     "framer-motion": "^10.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
   }
 }

@@ -8,6 +8,7 @@
     "jsx": "react-jsx",
     "declaration": true,
     "declarationMap": true,
+    "emitDeclarationOnly": true,
     "moduleResolution": "node",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
@@ -20,7 +21,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "typeRoots": ["node_modules/@types", "src/types"],
+    "typeRoots": ["node_modules/@types", "src/@types"],
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
