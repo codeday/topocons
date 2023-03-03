@@ -1,3 +1,5 @@
 node_modules/
 stage1/
 dist/
+src/Icon
+src/optimized-svg
