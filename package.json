@@ -1,19 +1,52 @@
 {
   "name": "@codeday/topocons",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "SRND icons for React projects.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Tyler Menezes",
   "license": "UNLICENSED",
-  "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/preset-react": "^7.0.0",
-    "@svgr/cli": "^4.2.0",
-    "create-index": "^2.4.0"
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf src/Icon && rm -rf src/optimized-svg && rm -rf dist",
+    "build": "tsup src/Icon --dts",
+    "build:fast": "tsup src/Icon --no-clean",
+    "pregenerate-icons": "svgo -f ./src/svg/Icon -o src/optimized-svg/Icon",
+    "generate-icons": "mkdir -p src/Icon && create-chakra-icons -o src/Icon src/optimized-svg/Icon --typescript --multi -T C && idxgen src/Icon/",
+    "postgenerate-icons": "replace '#000000' 'currentColor' src/Icon/*.tsx && replace '#000' 'currentColor' src/Icon/*.tsx"
   },
-  "dependencies": {
-    "react": "^16.8.6"
+  "devDependencies": {
+    "@chakra-ui/react": "^2.5.1",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@nexite/create-chakra-icons": "^1.1.1",
+    "@types/node": "^16.11.6",
+    "@types/react": "^18.0.0",
+    "framer-motion": "^10.0.1",
+    "idxgen": "^1.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "replace": "^1.2.2",
+    "svgo": "^3.0.2",
+    "tsup": "^6.6.3",
+    "typescript": "^4.5.2"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": "^2.5.1",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "framer-motion": "^10.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
   }
 }
