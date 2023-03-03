@@ -1,8 +1,17 @@
 {
   "name": "@codeday/topocons",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "SRND icons for React projects.",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "author": "Tyler Menezes",
   "license": "UNLICENSED",
   "sideEffects": false,
