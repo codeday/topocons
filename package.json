@@ -20,9 +20,9 @@
   ],
   "scripts": {
     "clean": "rm -rf src/Icon && rm -rf src/optimized-svg && rm -rf dist",
-    "build": "tsup src/Icon --dts",
-    "build:fast": "tsup src/Icon --no-clean",
-    "pregenerate-icons": "svgo -f ./src/svg/Icon -o src/optimized-svg/Icon",
+    "build": "tsup src/Icon/index.ts --dts",
+    "build:fast": "tsup src/Icon/index.ts --no-clean",
+    "pregenerate-icons": "svgo -f ./src/svg/Icon -o src/optimized-svg/Icon --config ./svgo.config.js",
     "generate-icons": "mkdir -p src/Icon && create-chakra-icons -o src/Icon src/optimized-svg/Icon --typescript --multi -T C && idxgen src/Icon/",
     "postgenerate-icons": "replace '#000000' 'currentColor' src/Icon/*.tsx && replace '#000' 'currentColor' src/Icon/*.tsx"
   },
